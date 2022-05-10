@@ -35,3 +35,8 @@ h1{
 @keyframes mymove {
   50% {transform: rotate(360deg);}
 }
+
+
+tr:hover {
+    background-color: rgb(150, 150, 150);
+}
