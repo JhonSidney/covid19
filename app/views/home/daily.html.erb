@@ -1,0 +1,80 @@
+<%= render partial: 'breadcrumb'%>
+
+<h1> Diário China</h1>
+<h5><%=@daily.length %> itens por página</h5>
+<p>Lista de casos de diario/china </p>
+<div class="table-responsive">
+    <table class="table table-hover text-white">
+        <thead>
+            <tr class="text-sm-center fixed">
+            <th class="p-1 mb-1 bg-primary text-white " scope="col">Confirmados <br/> Total</th>
+            <th class="p-1 mb-1 bg-primary text-white" scope="col">China Continental</th>
+            <th class="p-1 mb-1 bg-primary text-white" scope="col">Outros Locais</th>
+            <th class="p-1 mb-1 bg-primary text-white" scope="col">delta Confirmed</th>
+            <th class="p-1 mb-1 bg-primary text-white" scope="col">Total Recuperados</th>
+            <th class="p-1 mb-1 bg-success text-white" scope="col">Ativos </th>
+            <th class="p-1 mb-1 bg-success text-white" scope="col">Deltas Recuperados</th>
+            <th class="p-1 mb-1 bg-success text-white" scope="col">Taxa Incidentes</th>
+            <th class="p-1 mb-1 bg-success text-white" scope="col">Pessoas testadas</th>
+            <th class="p-1 mb-1 bg-success text-white" scope="col">Data Relatorio</th>
+            <th class="p-1 mb-1 bg-info text-white">
+                <th class="p-1 mb-1 bg-info text-white">Confirmados<br/>Total</th>
+                <th class="p-1 mb-1 bg-info text-white">Confirmados<br/>China</th>
+                <th class="p-1 mb-1 bg-info text-white">Confirmados<br/>Fora china</th>
+            </th>
+            <th class="p-1 mb-1 bg-info text-white">
+                <th class="p-1 mb-1 bg-info text-white">Delta <br/> Total<br/></th>
+                <th class="p-1 mb-1 bg-info text-white">Delta <br/> China</th>
+                <th class="p-1 mb-1 bg-info text-white">Delta <br/> Fora china</th>
+            </th>
+            <th class="p-1 mb-1 bg-danger text-white">
+                <th class="p-1 mb-1 bg-danger text-white">Mortes<br/> Total<br/></th>
+                <th class="p-1 mb-1 bg-danger text-white">Mortes<br/> China</th>
+                <th class="p-1 mb-1 bg-danger text-white">Mortes<br/> Fora china</th>
+            </th>
+            <th class="p-1 mb-1 bg-warning text-dark">
+                <th class="p-1 mb-1 bg-warning text-dark">Recuperados<br/> Total<br/></th>
+                <th class="p-1 mb-1 bg-warning text-dark">Recuperados<br/> China</th>
+                <th class="p-1 mb-1 bg-warning text-dark">Recuperados<br/> Fora china</th>
+            </th>            
+        </thead>
+        <tbody>
+            <% @daily.each do |daily|%>
+                <tr class="text-center">
+                    <th ><%= daily['totalConfirmed']%></th>
+                    <td ><%= daily['mainlandChina']%></td>
+                    <td ><%= daily['otherLocations']%></td>
+                    <td ><%= daily['deltaConfirmed']%></td>
+                    <td ><%= daily['totalRecovered']%></td>
+                    <td ><%= daily['active']%></td>
+                    <td ><%= daily['deltaRecovered']%></td>
+                    <td ><%= daily['incidentRate']%></td>
+                    <td ><%= daily['peopleTested']%></td>
+                    <td ><%= daily['reportDate']%></td>
+                    <td >
+                        <td ><%= daily["confirmed"]['total']%>
+                        <td ><%= daily["confirmed"]['china']%></td>
+                        <td ><%= daily["confirmed"]['outsideChina']%></td>
+                    </td>
+                    <td >
+                        <td ><%= daily["deltaConfirmedDetail"]['total']%>
+                        <td ><%= daily["deltaConfirmedDetail"]['china']%></td>
+                        <td ><%= daily["deltaConfirmedDetail"]['outsideChina']%></td>
+                    </td>
+                    <td >
+                        <td ><%= daily["deaths"]['total']%>
+                        <td ><%= daily["deaths"]['china']%></td>
+                        <td ><%= daily["deaths"]['outsideChina']%></td>
+                    </td>
+                    <td >
+                        <td ><%= daily["recovered"]['total']%>
+                        <td ><%= daily["recovered"]['china']%></td>
+                        <td ><%= daily["recovered"]['outsideChina']%></td>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+<%= render partial: 'bootstrap_nav', locals: {pagy: @pagy} %>

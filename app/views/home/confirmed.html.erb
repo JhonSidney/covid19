@@ -1,0 +1,28 @@
+<%= render partial: 'breadcrumb'%>
+
+<h1> Casos Confirmados</h1>
+<h5><%=@confirmed.length %> itens por página</h5>
+<p>Lista de casos confirmados da covid19 </p>
+
+<table class="table table-hover text-white text-left ">
+  <thead>
+    <tr>
+      <th scope="col">País</th>
+      <th scope="col">Cidade</th>
+      <th scope="col">Confirmados</th>
+      <th scope="col">Ultima Atualização</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @confirmed.each do |confirmed|%>
+        <tr>
+            <th ><%= confirmed['countryRegion']%></th>
+            <td ><%= confirmed['provinceState']%></td>
+            <td ><%= confirmed['confirmed']%></td>
+            <td ><%= Time.at(confirmed['lastUpdate'].to_i/1000).strftime('%d/%m/%Y %H:%M:%S')%></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render partial: 'bootstrap_nav', locals: {pagy: @pagy} %>

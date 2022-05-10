@@ -1,0 +1,27 @@
+<%= render partial: 'breadcrumb'%>
+
+<h1> Casos de Mortes</h1>
+<h5><%=@deaths.length %> itens por página</h5>
+<p>Lista de casos de mortes pela covid19 </p>
+<table class="table table-hover text-white ">
+  <thead>
+    <tr>
+      <th scope="col">País</th>
+      <th scope="col">Cidade</th>
+      <th scope="col">Mortos</th>
+      <th scope="col">Ultima Atualização</th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @deaths.each do |deaths|%>
+        <tr>
+            <th ><%= deaths['countryRegion']%></th>
+            <td ><%= deaths['provinceState']%></td>
+            <td ><%= deaths['confirmed']%></td>
+            <td ><%= Time.at(deaths['lastUpdate'].to_i/1000).strftime('%d/%m/%Y %H:%M:%S')%></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render partial: 'bootstrap_nav', locals: {pagy: @pagy} %>
