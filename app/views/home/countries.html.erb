@@ -5,13 +5,13 @@
 <div class="container">
   <%= form_with url: "/paises/", class:"mb-5 col-xs-4", method: :get do |form|  %>
       <%= form.text_field :status, class:"form-control mr-sm-2 mb-4 ", placeholder:"ex.: USA , indonesia"%>
-      <%= form.submit "Pesquisar", class:"btn btn-outline-success my-2 my-sm-0 mb-5" %>
+      <%= form.submit "Pesquisar", class:"btn btn-outline-success my-2 my-sm-0 " %>
       <%= link_to 'limpar', paises_path, class:"btn btn-outline-primary my-2 my-sm-0 "  %>
   <% end %>
 </div>
-
+<div  class="table-responsive">
 <%if @countries.present? == true %>
-    <table class="table table-hover text-white text-center ">
+    <table class="table table-hover text-white text-left ">
       <thead>
         <tr>
           <th scope="col">Nome</th>
@@ -54,3 +54,4 @@
       </tbody>
     </table>
 <%end%>
+</div>
